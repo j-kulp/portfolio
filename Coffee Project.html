@@ -1,0 +1,268 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Jared Kulp's Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+        <link rel="stylesheet" href="assets/css/styles.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo"><strong>Coffee Shop Business Strategy</strong> by Jared Kulp</a>
+									<ul class="icons">
+										<li><a href="https://www.linkedin.com/in/jared-kulp-cfl/" target="_blank" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+										<li><a href="https://www.youtube.com/@ThatAnalystJaredKulp" class="icon brands fa-youtube"><span class="label">YouTube</span></a></li>
+										<li><a href="https://github.com/j-kulp" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+									</ul>
+								</header>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1 id="top">Coffee Shop Business Strategy</h1>
+                                        <h3>Insights from Survey and Taste Test Data</h3>
+									</header>
+
+									<span class="image main"><img src="images/coffee.jpg" alt="" /></span>
+
+									<h3>Project Overview:</h3>
+                                    <p>This project analyzes local pricing, survey responses, and taste test data from YouTuber James Hoffman’s and Cometeer’s “The Great American Coffee Taste Test” to help investors develop a data-driven strategy for opening a specialty coffee shop. The focus is on identifying customer preferences, ideal product offerings, and pricing strategies to maximize profitability while fostering a strong community-oriented coffee culture.</p>
+                                <br>
+                                    <p><b>Quick Insights:</b></p>
+                                    <ol>
+                                        <li>Men tend to prefer fruity light-roast pourovers, while women favor medium-roast chocolatey lattes</li>
+                                        <li>Age group influenced spending habits, as well as flavor, roast, and drink preferences</li>
+                                        <li>1 in 3 respondents are already spending $6-$8 per cup, 1 in 4 are willing to spend $8-$10, with nearly 1 in 5 seeking premium coffee over $20.</li>
+                                    </ol>
+									<hr class="major" />
+                                    
+<div id="toc">
+  <h2>Table of Contents</h2>
+    <ul>
+        <li><a href="#sources">Data Sources</a></li>
+        <li><a href="#tools">Tools</a></li>
+        <li><a href="#eda">Exploratory Data Analysis</a></li>
+        <li><a href="#analysis">Analysis</a></li>
+        <ul>
+            <li><a href="#men taste">Men's Preferences</a></li>
+            <li><a href="#women taste">Women's Preferences</a></li>
+            <li><a href="#code">Tableau to SQL code</a></li>
+            <li><a href="#local prices">Local Coffee Prices</a></li>
+        </ul>
+        <li><a href="#results">Results</a></li>
+        <li><a href="#recommendations">Recommendations</a></li>
+        <li><a href="#limitations">Limitations</a></li>
+        <li><a href="#references">References</a></li>
+    </ul>
+</div>
+                                    <br>
+
+									<h3 id="sources">Data Sources:</h3>
+                                    <p><a href="https://www.kaggle.com/datasets/datalab351/great-american-coffee-taste-test">Survey and taste test data</a> from the "Great American Coffee Taste Test" (James Hoffman & Cometeer)</p>
+                                        
+                                    <p>Sample of prices from 10 cafes serving specialty coffee in the Tampa-Sarasota, FL area</p>
+                                        
+                                    <p><a href="https://www.coffeebeancorral.com/categories/Green-Coffee-Beans/All-Coffees.aspx">Green coffee prices</a> from Coffee Bean Corral</p>
+                                        
+                                    <p><a href="https://www.transactionguide.coffee/reports/specialty-coffee-retail-price-index-2023-q4">Specialty Coffee Retail Price Index</a> from The Specialty Coffee Transaction Guide</p>
+
+
+									<hr class="major" />
+
+									<h3 id="tools">Tools</h3>
+									<ul>
+                                        <li>Google Sheets (data cleaning, EDA, visualizations)</li>
+                                        <li>Tableau (dashboard)</li>
+                                        <li>Google Slides and YouTube (presentation)</li>
+                                    </ul>
+                                    
+									<hr class="major" />
+
+									<h3>Data Cleaning and Preparation</h3>
+									<ul>
+                                        <li>NULL values ignored in Pivot Tables</li>
+                                        
+                                    </ul>
+
+                                    
+									<hr class="major" />
+
+									<h2 id="eda">Exploratory Data Analysis</h2>
+                                    <ol>
+                                        <li>What type of customer should we target?</li>
+                                        <li>What are their preferences?</li>
+                                        <li>What product and/or service can we offer?</li>
+                                        <li>How can we align prices with customer value perception?</li>
+                                    </ol>
+                                    
+                                    <hr class="major" />
+
+									<h2 id="analysis">Data Analysis</h2>
+                                    
+                                    <p id="men taste"><b>Men's Product Preferences</b> differed greatly from women's
+                                    <div class='tableauPlaceholder' id='viz1727283117675' style='position: left'><noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;X8&#47;X8JCPHHYR&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='path' value='shared&#47;X8JCPHHYR' /> <param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;X8&#47;X8JCPHHYR&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1727283117675');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';} else { vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*1.77)+'px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+                                    
+                                    <br>                                    
+                                    <p id="women taste">Here are the <b>same questions posed to women</b></p>
+                                    
+                                    <div class='tableauPlaceholder' id='viz1727284993510' style='position: right'><noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Z5&#47;Z5548PZ67&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='path' value='shared&#47;Z5548PZ67' /> <param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Z5&#47;Z5548PZ67&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1727284993510');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';} else { vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*1.77)+'px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+                                        
+                                    <br>
+                                    <p><b>Under the hood</b> we're essentially filtering out bad responses, selecting one gender, checking the average response to each question and ordering it from greatest to least </p>
+<pre><code id="code">WITH FilteredResponses AS (
+    SELECT 
+        respondent_id,
+        favorite_drink,
+        favorite_flavor,
+        coffee_roast,
+        COUNT(*) OVER() AS total_responses -- Counts total male respondents
+    FROM 
+        survey_data
+    WHERE 
+        gender = 'Male' 
+        AND favorite_drink IS NOT NULL
+        AND favorite_flavor IS NOT NULL
+        AND coffee_roast IS NOT NULL
+)
+
+-- Now, calculate the percentage for each question and response type
+SELECT 
+    'Favorite Drink' AS question,
+    favorite_drink AS response,
+    COUNT(*) * 100.0 / MAX(total_responses) AS percentage
+FROM 
+    FilteredResponses
+GROUP BY 
+    favorite_drink, total_responses
+
+UNION ALL
+
+SELECT 
+    'Favorite Flavor' AS question,
+    favorite_flavor AS response,
+    COUNT(*) * 100.0 / MAX(total_responses) AS percentage
+FROM 
+    FilteredResponses
+GROUP BY 
+    favorite_flavor, total_responses
+
+UNION ALL
+
+SELECT 
+    'Coffee Roast' AS question,
+    coffee_roast AS response,
+    COUNT(*) * 100.0 / MAX(total_responses) AS percentage
+FROM 
+    FilteredResponses
+GROUP BY 
+    coffee_roast, total_responses;
+</code></pre><br>
+                                    
+                                    <p id="local prices"><b>Here we have local prices in the Tampa-Sarasota area</b></p>
+                                    <span class="image fit"><img src="images/local prices.jpg" alt="" /></span><br>
+                                    
+                                    <p>which <b>we can compare with our survey responses (both genders selected)</b></p><br>
+                                    <div class='tableauPlaceholder' id='viz1727287759962' style='position: relative'><noscript><a href='#'><img alt='Customer Spending ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;ZD&#47;ZDR5THM47&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='path' value='shared&#47;ZDR5THM47' /> <param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;ZD&#47;ZDR5THM47&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1727287759962');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+                                    
+                                    
+                                  
+                                    <hr class="major" />
+
+									<h2 id="results">Results</h2>
+                                    <ul>
+                                        <li><b>Customer Profile:</b><br>
+The target market includes older Gen Z and Millennials with disposable income, no kids, and a preference for quality coffee. The majority consume 1-2 cups of coffee daily.</li>
+                                        <li><b>Specialty Coffee Appeal:</b><br>
+There’s a market for ethically sourced, premium single-origin coffee, with consumers willing to pay more to support sustainable farming practices.</li>
+                                        <li><b>Pricing Tiers:</b><br>
+Customers are most comfortable paying between $6-$8 per cup, with a significant portion willing to spend over $15 for premium offerings.</li>
+                                    </ul>
+                                        
+                                    <hr class="major" />
+
+									<h2 id="recommendations">Recommendations</h2>
+                                    <ol>
+                                        <li><b>Product Offerings:</b></li>
+                                            <ul><li>Focus on fruity, light-roast pourovers for men and medium-roast, chocolatey lattes for women.</li>
+                                                <li>Introduce specialty roasted beans for at-home brewing, aligning with the customer preference for home coffee experiences.</li></ul>
+                                        <li><b>Customer Experience:</b></li>
+                                            <ul><li>Offer brewing and latte art classes to enhance the customer experience and build loyalty.</li>
+                                                <li>Implement limited-run snacks from local businesses to complement the coffee experience.</li></ul>
+                                        <li><b>Pricing Strategy:</b></li>
+                                            <ul><li>Set pricing tiers in the $6-$15 range based on coffee quality and type, with premium offerings priced above $15 for specialty drinks.</li>
+                                                <li>Highlight the ethical and sustainable aspects of your coffee to justify premium pricing.</li></ul>
+                                    </ol>
+                                        
+                                    <hr class="major" />
+
+									<h2 id="limitations">Limitations</h2>
+                                    
+                                    <p><b>Survey Bias:</b><br>
+                                        Respondents may have skewed results due to over-reporting of preferences or willingness to spend.</p>
+                                    
+                                    <p><b>Taste Test Sample Size:</b><br>
+                                        The number of taste test samples may not fully represent broader consumer preferences. Subsequent customer segmentation isn't rigorous due to sample size and...</p>
+                                    
+                                    <p><b>Selection Bias:</b><br>
+                                        Respondents are not representative of the greater population, showing greater interest and experience by choosing to participate in a coffee taste test conducted by a coffee YouTuber</p>
+                                        
+                                    <p><b>Self-Reported Data:</b><br>
+                                            Results are based on self-reported survey data, which may introduce inaccuracies in spending habits or taste preferences.</p>
+                                        
+                                    <hr class="major" />
+
+									<h3 id="references">References</h3>
+                                    
+                                    <p><a href="coffee presentation.pdf">Here</a> is a PDF of my Google Slides as seen in <a href="https://youtu.be/Cdl8A905i2I">my YouTube presentation</a></p>
+                                    <p><a href="https://youtu.be/Dmpnrtey3YU?si=SRrpA3CunfzPyrMI">Why Single-Origin Coffee is So Expensive</a> from Business Insider</p>
+
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>Get in touch</h2>
+									</header>
+									<p>Looking to hire or collaborate?</p>
+									<ul class="contact">
+										<li class="icon solid fa-envelope"><a href="#">j.kulp.cfl@gmail.com</a></li>
+										<li class="icon solid fa-phone">(727) 542-5243</li>
+										<li class="icon solid fa-home">Parrish, FL 34219</li>
+									</ul>
+								</section>
+						</div>
+					</div>
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
+
