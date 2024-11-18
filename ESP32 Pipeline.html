@@ -1,0 +1,346 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Jared Kulp's Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+        <link rel="stylesheet" href="assets/css/styles.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo"><strong>End-to-End IoT Data Pipeline</strong> by Jared Kulp</a>
+									<ul class="icons">
+										<li><a href="https://www.linkedin.com/in/jared-kulp-cfl/" target="_blank" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+										<li><a href="https://www.youtube.com/@ThatAnalystJaredKulp" class="icon brands fa-youtube"><span class="label">YouTube</span></a></li>
+										<li><a href="https://github.com/j-kulp" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+									</ul>
+								</header>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1 id="top">End-to-End IoT Data Pipeline</h1>
+                                        <h3>From Sensors to Dashboards</h3>
+									</header>
+
+									<span class="image main"><img src="images/engineer.jpg" style="max-width: 90%; height: auto;" alt="" /></span>
+                                    <hr class="major" />
+									<h3>Project Overview:</h3>
+                                    <p>This project demonstrates a real-time Internet of Things(IoT) system designed for monitoring temperature and humidity. <br>It combines hardware, software, and visualization tools to capture, process, and analyze environmental data as efficiently and safely as possible</p>
+                                    <h4>Why This Project?</h4>
+<p>This project explores the intersection of IoT and data visualization, creating a real-time system to monitor environmental conditions.<br>This project helped me explore key tools and techniques in data engineering and embedded systems while also creating something practical for monitoring conditions in small spaces</p>
+                                    <p>Skills learned in this project can be applied to monitor and maintain smart homes, gardens, and security applications</p>
+                                    
+                                <br>
+                                    <p><b>Key Features:</b></p>
+                                        <li><b>ESP32 Microcontrollers</b>: Collect temperature and humidity data using DHT11 sensors</li>
+                                        <li><b>MQTT Protocol</b>: Ensures lightweight and efficient data exchange</li>
+                                        <li><b>FastAPI Backend</b>: Processes and stores data in InfluxDB</li>
+                                        <li><b>Grafana Dashboards</b>: Offers live visualization and analysis with a 10-second refresh rate</li>
+                                    
+									<hr class="major" />
+                                    
+                            <!-- Table of Contents  -->
+                            <div id="toc">
+                              <h2>Table of Contents</h2>
+                                <ul>
+                                    <li><a href="#design">System Design</a></li>
+                                    <ol>
+                                        <li><a href="#diagram">Diagram</a></li>
+                                        <li><a href="#flow">Data Flow</a></li>
+                                    </ol>
+                                    <li><a href="#implementation">Implementation</a></li>
+                                    <ol>
+                                        <li><a href="#hardware">Hardware</a></li>
+                                        <li><a href="#software">Software</a></li>
+                                        <li><a href="#protocols">Protocols</a></li>
+                                    </ol>
+                                    <li><a href="#learning">Challenges & Solutions</a></li>
+                                    <li><a href="#results">Results</a></li>
+                                    <li><a href="#future">Future Enhancements</a></li>
+                                    <li><a href="#stack">Technical Stack</a></li>
+                                </ul>
+                            </div>
+                                    <br>
+                                    <hr class="major" />
+
+									<h2 id="design">System Design</h2>
+                                    
+                                    <p>This system was built to be flexible, scalable, and secure. Each part of the setup has a clear job, working together to capture data, process it efficiently, and show it in a way that's easy to understand. The focus was on making something that works well in real-time and can grow when new sensors or features are added later.</p>
+                                    <p>A potential application of this project is in a smart gardening system. Sensors can monitor soil moisture and sunlight levels, while weather data is integrated to predict rainfall. Based on these inputs, the system can decide when to activate sprinklers or deploy a tarp to protect crops from harsh conditions</p>
+
+
+                                    <hr class="major" />
+
+                                    <span class="image main"><img src="images/flow.png" alt="" /></span>
+									<h3 id="flow">Data Flow</h3>
+									<ol>
+                                        <li><b>Sensors</b>: DHT11 sensors measure temperature and humidity</li>
+                                        <li><b>Microcontroller</b>: ESP32 sends JSON payloads via MQTT over WiFi to the API on my laptop</li>
+                                        <li><b>Backend</b>: FastAPI processes the data and stores it in InfluxDB bucket on laptop</li>
+                                        <li><b>Visualization</b>: Grafana queries the database and visualizes the metrics</li>
+                                    </ol>
+                                    
+
+
+                                    
+									<hr class="major" />
+
+									<h2 id="implementation">Implementation</h2>
+                                    <p>Approaching the project was an iterative process. I'd saved comma-separated values to an SD card and used Bluetooth in past projects and wanted to improve on data transmission protocols, data engineering principles, and security</p>
+                                    <p>I tackled this as an end-to-end project to explore new software tools, focusing on affordability, scalability and security. To this end I chose the stack and tech stack and measures that I have, along with the decision not to post all of my code until I feel more comfortable </p>
+
+                                    <hr class="major" />
+
+									<h3 id="hardware">Hardware</h3>
+                                    
+                                    <span class="image main"><img src="images/esp32.png" style="max-width: 50%; height: auto;"></span>
+                                    <ul>
+                                        <li><b>Laptop</b>: a good testing ground before moving to cloud services. Chosen because it's available and I wanted to work with open-source, local options</li>
+                                        <li><b>DHT11 Sensor</b>: Measures temperature and humidity. Chosen because it's familiar and cheap</li>
+                                        <li><b>ESP32 Microcontrollers</b>: Reads sensor data, connects to WiFi and MQTT broker, sends data. Chosen because it's a relatively cheap and powerful edge device</li>
+                                        <ol>
+                                            <li>Device A: Captures data from a DHT11 sensor</li>
+                                            <li>Device B (Planned): Set to integrate additional sensors like BME280 or motion detectors</li>                                            
+                                        </ol>
+                                    </ul>
+                                    <hr class="major" />
+                                    
+									<h3 id="software">Software</h3>
+                                    <p>I wanted more experience with C++ and Python so I worked with those. I got a chance to work with JSON data, learning how to build and parse them in both languages
+                                    <br>
+<section class="code-snippet">
+  <h3 class="snippet-title">C++ Snippet: ESP32 Data Transmission Loop</h3>
+  <pre class="code-block">
+void loop() {
+  // Check if the ESP32 is connected to the MQTT broker
+  if (!client.connected()) {
+    reconnect();
+  }
+  client.loop();
+
+  unsigned long currentMillis = millis();
+
+  // Check if it's time to publish data
+  if (currentMillis - lastPublishTime >= publishInterval) {
+    lastPublishTime = currentMillis;
+
+    // Read temperature and humidity from DHT11 sensor
+    float humidity = dht.readHumidity();
+    float temperature = dht.readTemperature();
+
+    // Check if the readings are valid
+    if (isnan(humidity) || isnan(temperature)) {
+      Serial.println("Failed to read from DHT sensor!");
+      return;  // Skip the rest if the sensor readings are invalid
+    }
+
+    // Create JSON object with sensor data and metadata
+    StaticJsonDocument<200> doc;
+    doc["deviceID"] = device;
+    doc["temperature"] = temperature;
+    doc["humidity"] = humidity;
+    doc["timestamp"] = currentMillis;  // Timestamp for when the data was read, additional logic optional like deep sleep
+
+    // Serialize the JSON object to a buffer
+    char jsonBuffer[512];
+    serializeJson(doc, jsonBuffer);
+
+    // Publish the data to the MQTT broker
+    Serial.print("Publishing message: ");
+    Serial.println(jsonBuffer);
+    if (client.publish(mqtt_topic, jsonBuffer)) {
+      Serial.println("Message published successfully!");
+    } else {
+      Serial.println("Failed to publish message.");
+    }
+  }
+}
+    </pre>
+      <p class="snippet-explanation">
+This snippet demonstrates how the ESP32 ensures efficient data collection and transmission. By monitoring the interval since the last reading, the microcontroller reads sensor data only when needed. The readings are converted into a JSON object and sent to the MQTT broker, reducing unnecessary power usage and ensuring reliable messaging. </p>
+</section>
+                                         
+<section class="code-snippet">
+  <h3 class="snippet-title">Python Snippet #1 (MQTT Message Handler)</h3>
+  <pre class="code-block">
+# MQTT message handler
+def on_message(client, userdata, msg):
+    global latest_sensor_data
+    try:
+        # Parse the JSON payload
+        sensor_data = json.loads(msg.payload.decode())
+        
+        # Store the latest sensor data
+        latest_sensor_data = sensor_data
+
+        # Insert the parsed data into InfluxDB
+        asyncio.run(insert_data(sensor_data))
+    except Exception as e:
+        print(f"Error parsing message: {e}")
+</pre>
+                                    <p class="snippet-explanation">
+When the MQTT message is received, this snippet decodes the JSON payload, extracts the sensor data, and sends it to the database. It highlights robust error handling to prevent data loss or crashes during parsing and insertion into InfluxDB.</p>
+</section>
+
+<section class="code-snippet">
+  <h3 class="snippet-title">Python Snippet #2 (API Endpoint for Latest Data)</h3>
+  <pre class="code-block">
+# API endpoint to latest reading
+@app.get("/latest-data")
+async def get_latest_data():
+    if latest_sensor_data:
+        return {"sensor_data": latest_sensor_data}
+    return {"message": "No data received yet."}
+</pre>
+                                    <p class="snippet-explanation">
+This API endpoint provides a way to retrieve the most recent sensor data received by the server, simplifying debugging and validating sensor readings without directly accessing the database.</p>
+</section>
+                                    <hr class="major" />
+
+									<h2 id="protocols">Protocols</h2>
+
+                                    <li><b>MQTT</b>: Ensures lightweight messaging between ESP32 devices and the API</li>
+                                    <li><b>HTTP</b>: Used by FastAPI to interact with the database and manage data processing</li>
+
+                                        
+                                    <hr class="major" />
+
+
+<section class="challenge-solution">
+  <h3 id="learning">Challenges & Solutions</h3>
+  <div class="challenge-solution-item">
+    <b>1. MQTT Broker Compatibility Issues:</b>
+    <p><strong>-  </strong>I faced repeated connection failures, possibly due to administrative rights or configuration conflicts</p>
+    <p><strong>+  </strong>After exploring alternative MQTT broker installations, switching to a different package resolved the problem</p>
+  </div>
+    <b>2. Timestamp Formatting for Time Series Databases:</b>
+  <div class="challenge-solution-item">
+    <p><strong>-  </strong> Synchronizing time data from sensors with the database proved inconsistent due to power and clock drift issues on the ESP32</p>
+    <p><strong>+  </strong> Delegating timestamp generation to InfluxDB ensured precise, reliable time tracking</p>
+  </div>
+      <b>3. Grafana-InfluxDB Integration:</b>
+  <div class="challenge-solution-item">
+    <p><strong>-  </strong> Initial attempts to connect Grafana to InfluxDB failed due to mismatched naming conventions</p>
+    <p><strong>+  </strong> With ChatGPT’s help and careful review of the Grafana documentation, I realized the issue was related to bucket IDs versus names and corrected the configuration</p>
+  </div>
+</section>
+
+                                    <hr class="major" />
+
+									<h2 id="results">Results</h2>
+                                    <span class="image main"><img src="images/grafana.jpg" style="max-width: 90%; height: auto;" alt="" /></span>
+                                    
+                                    <p><b>Real-Time Monitoring:</b> Sensor data from multiple ESP32 devices was transmitted via MQTT and visualized in real-time using Grafana, with a 10-second refresh rate.</p>
+                                    <p><b>Insightful Dashboards:</b> Grafana dashboards featured time-series graphs, gauge panels, and threshold markers, making trends like temperature fluctuations and light exposure easy to track at a glance.</p>
+                                    <p><b>System Efficiency:</b> Lightweight MQTT and asynchronous FastAPI processing ensured low latency and high responsiveness, even with multiple devices sending data.</p>
+                                    <p><b>Scalability:</b> The modular design allowed seamless addition of sensors and integration with external APIs, such as weather services for smarter irrigation decisions.</p>
+                                    <p><b>Data Reliability:</b> Centralized timestamping at the API ensured consistent and reliable data for historical analysis, eliminating ESP32 clock dependencies.</p>
+                                    
+                                    <hr class="major" />
+
+									<h3 id="future">Future Improvements</h3>
+                                    <ol>
+                                        <li><b>API Improvements</b>: Enhance security and explore Node-RED for simplified data ingestion</li>
+                                        <li><b>Threshold Alerts</b>: Configure automated notifications for abnormal temperature or humidity levels</li>
+                                        <li><b>Cloud Integration</b>: Enable remote access to Grafana dashboards for better accessibility</li>
+                                        <li><b>Expanded Sensors</b>: Add air quality, motion, or other environmental sensors for broader monitoring capabilities</li>
+                                    </ol>
+                                    
+                                    <hr class="major" />
+    
+                                    <section class="stack">
+                                      <h3 id="stack">Technical Stack</h3>
+
+                                      <div class="stack-item"><b>Languages</b>
+                                        <ul>
+                                            <li><i>Python:</i> Chosen for its flexibility, readability, and extensive data processing libraries</li>
+                                            <li><i>C++:</i> Ideal for resource-efficient programming on microcontrollers.</li>
+                                        </ul>
+                                    <b>Tools</b>
+                                    <ul>
+                                        <li><i>Mosquitto:</i> Lightweight and reliable MQTT broker for efficient communication</li>
+                                        <li><i>InfluxDB:</i> Optimized for time series data, providing fast, precise storage and querying</li>
+                                        <li><i>Grafana:</i> Offers rich, customizable dashboards for real-time data visualization</li>
+                                    </ul>
+                                   
+                                    <b>Libraries (C++)</b>
+                                    <ul>
+                                        <li><i>WiFi:</i> Simplifies ESP32’s connection to wireless networks</li>
+                                        <li><i>PubSubClient:</i> A compact library for MQTT communication</li>
+                                        <li><i>DHT_U:</i> Provides reliable sensor interfacing with the DHT11</li>
+                                        <li><i>ArduinoJson:</i> Facilitates lightweight JSON creation and parsing</li>
+                                    </ul>
+                                    
+                                    <b>Libraries (Python)</b>
+                                    <ul>
+                                        <li><i>uvicorn:</i> A fast ASGI server for deploying the FastAPI backend</li>
+                                        <li><i>FastAPI:</i> Enables quick and efficient development of RESTful APIs</li>
+                                        <li><i>paho.mqtt:</i> A robust library for MQTT messaging in Python</li>
+                                        <li><i>influxdb_client:</i> Simplifies database integration with InfluxDB</li>
+                                        <li><i>json:</i> Handles JSON parsing and serialization</li>
+                                        <li><i>asyncio:</i> Supports non-blocking, concurrent database interactions</li>
+                                    </ul>
+                                    <b>Hardware</b>
+                                    <ul>
+                                        <li><i>ESP32:</i> Selected for its built-in Wi-Fi and Bluetooth capabilities, making it ideal for IoT applications requiring real-time data transmission</li>
+                                        <li><i>DHT11:</i> Chosen for its simplicity and affordability in measuring temperature and humidity in low-power projects</li>
+                                    </ul>
+                                    <b>Protocols</b>
+                                    <ul>
+                                        <li><i>MQTT:</i> Chosen for its lightweight publish/subscribe model, ensuring efficient communication between devices in constrained environments</li>
+                                        <li><i>HTTP:</i> Utilized for interoperability with web-based APIs, providing a universal method for transmitting data over the internet</li>
+                                        <li><i>Wi-Fi:</i> Chosen for its widespread availability and ability to connect the ESP32 to cloud or local networks seamlessly</li>
+                                    </ul>
+                                    </div>
+
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>Get in touch</h2>
+									</header>
+									<p>Looking to hire or collaborate?</p>
+									<ul class="contact">
+										<li class="icon solid fa-envelope"><a href="#">j.kulp.cfl@gmail.com</a></li>
+										<li class="icon solid fa-phone">(727) 542-5243</li>
+										<li class="icon solid fa-home">Parrish, FL 34219</li>
+									</ul>
+								</section>
+						</div>
+					</div>
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
+
