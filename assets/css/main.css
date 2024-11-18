@@ -2271,3 +2271,80 @@ button,
     border-top: 0;
     margin-top: 0;
     padding-top: 0; }
+
+/* Overall section style */
+section.code-snippet {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+/* Title styling */
+h3.snippet-title {
+  font-size: 1.25rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+/* Code block styling */
+pre.code-block {
+  background-color: #2d2d2d;
+  color: #f8f8f2;
+  padding: 1rem;
+  border-radius: 5px;
+  font-family: 'Courier New', Courier, monospace;
+  overflow-x: auto;
+}
+
+/* Explanation styling */
+p.snippet-explanation {
+  font-size: 1rem;
+  color: #555;
+  margin-top: 0.5rem;
+}
+
+/* Challenges & Solutions Section */
+section.challenge-solution {
+  margin: 2rem 0;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f7f7f7;
+}
+
+.challenge-solution-item {
+  margin-bottom: 1rem;
+}
+
+.challenge-solution-item p {
+  margin: 0.5rem 0;
+}
+
+strong {
+  color: #333;
+  font-weight: bold;
+}
+
+/* Tech Stack Section */
+section.stack {
+  margin: 2rem 0;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f7f7f7;
+}
+
+.stack-item {
+  margin-bottom: 1rem;
+}
+
+.stack-item p {
+  margin: 0.5rem 0;
+}
+
+strong {
+  color: #333;
+  font-weight: bold;
+}
