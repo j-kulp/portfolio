@@ -48,7 +48,7 @@
                                     
                                 <br>
                                     <p><b>Key Features:</b></p>
-                                        <li><b>ESP32 Microcontrollers</b>: Collect temperature and humidity data using DHT11 sensors</li>
+                                        <li><b>ESP32 Microcontrollers</b>: Collect temperature and humidity data using DHT11 and BME280 sensors</li>
                                         <li><b>MQTT Protocol</b>: Ensures lightweight and efficient data exchange</li>
                                         <li><b>FastAPI Backend</b>: Processes and stores data in InfluxDB</li>
                                         <li><b>Grafana Dashboards</b>: Offers live visualization and analysis with a 10-second refresh rate</li>
@@ -82,7 +82,7 @@
 									<h2 id="design">System Design</h2>
                                     
                                     <p>This system was built to be flexible, scalable, and secure. Each part of the setup has a clear job, working together to capture data, process it efficiently, and show it in a way that's easy to understand. The focus was on making something that works well in real-time and can grow when new sensors or features are added later.</p>
-                                    <p>A potential application of this project is in a smart gardening system. Sensors can monitor soil moisture and sunlight levels, while weather data is integrated to predict rainfall. Based on these inputs, the system can decide when to activate sprinklers or deploy a tarp to protect crops from harsh conditions</p>
+                                    <p>One potential application of this skills from this project is in a smart gardening system. Sensors can monitor soil moisture and sunlight levels, while weather data is integrated to predict rainfall. Based on these inputs, the system can decide when to activate sprinklers or deploy a tarp to protect crops from harsh conditions</p>
 
 
                                     <hr class="major" />
@@ -90,33 +90,33 @@
                                     <span class="image main"><img src="images/flow.png" alt="" /></span>
 									<h3 id="flow">Data Flow</h3>
 									<ol>
-                                        <li><b>Sensors</b>: DHT11 sensors measure temperature and humidity</li>
-                                        <li><b>Microcontroller</b>: ESP32 sends JSON payloads via MQTT over WiFi to the API on my laptop</li>
+                                        <li><b>Sensors</b>: DHT11 and BME280 sensors measure environmental data</li>
+                                        <li><b>Microcontroller</b>: ESP32s sends JSON payloads via MQTT over WiFi to the API on my laptop</li>
                                         <li><b>Backend</b>: FastAPI processes the data and stores it in InfluxDB bucket on laptop</li>
                                         <li><b>Visualization</b>: Grafana queries the database and visualizes the metrics</li>
                                     </ol>
-                                    
-
-
                                     
 									<hr class="major" />
 
 									<h2 id="implementation">Implementation</h2>
                                     <p>Approaching the project was an iterative process. I'd saved comma-separated values to an SD card and used Bluetooth in past projects and wanted to improve on data transmission protocols, data engineering principles, and security</p>
-                                    <p>I tackled this as an end-to-end project to explore new software tools, focusing on affordability, scalability and security. To this end I chose the stack and tech stack and measures that I have, along with the decision not to post all of my code until I feel more comfortable </p>
+                                    <p>I tackled this as an end-to-end project to explore new software tools, focusing on affordability, scalability and security. To this end I chose the technical stack and measures that I have, along with the decision not to post all of my code until I feel more comfortable </p>
 
                                     <hr class="major" />
 
 									<h3 id="hardware">Hardware</h3>
                                     
-                                    <span class="image main"><img src="images/esp32.png" style="max-width: 50%; height: auto;"></span>
+                                    <span class="image main"><img src="images/dht11.jpg"  style="max-width: 70%; height: auto;"></span>
+                                    <span class="image main"><img src="images/bme280.jpg" style="max-width: 70%; height: auto;"></span>
+
                                     <ul>
-                                        <li><b>Laptop</b>: a good testing ground before moving to cloud services. Chosen because it's available and I wanted to work with open-source, local options</li>
                                         <li><b>DHT11 Sensor</b>: Measures temperature and humidity. Chosen because it's familiar and cheap</li>
+                                        <li><b>BME280 Sensor</b>: Measures temperature and humidity more accurately than the DHT11, as well as barometric pressure. Chosen because it's different and relevant</li>
+                                        <li><b>Laptop</b>: a good testing ground before moving to cloud services. Chosen because it's available and I wanted to work with open-source, local options</li>
                                         <li><b>ESP32 Microcontrollers</b>: Reads sensor data, connects to WiFi and MQTT broker, sends data. Chosen because it's a relatively cheap and powerful edge device</li>
                                         <ol>
                                             <li>Device A: Captures data from a DHT11 sensor</li>
-                                            <li>Device B (Planned): Set to integrate additional sensors like BME280 or motion detectors</li>                                            
+                                            <li>Device B: Captures data from a BME280 sensor, extendible to other sensors</li>                                            
                                         </ol>
                                     </ul>
                                     <hr class="major" />
@@ -153,6 +153,7 @@ void loop() {
     // Create JSON object with sensor data and metadata
     StaticJsonDocument<200> doc;
     doc["deviceID"] = device;
+    doc["sensorName"] = sensorName;
     doc["temperature"] = temperature;
     doc["humidity"] = humidity;
     doc["timestamp"] = currentMillis;  // Timestamp for when the data was read, additional logic optional like deep sleep
@@ -173,7 +174,7 @@ void loop() {
 }
     </pre>
       <p class="snippet-explanation">
-This snippet demonstrates how the ESP32 ensures efficient data collection and transmission. By monitoring the interval since the last reading, the microcontroller reads sensor data only when needed. The readings are converted into a JSON object and sent to the MQTT broker, reducing unnecessary power usage and ensuring reliable messaging. </p>
+This snippet shows the ESP32 monitoring the interval since the last reading, the microcontroller reads sensor data only when needed. The readings are converted into a JSON object and sent to the MQTT broker, reducing unnecessary power usage and ensuring reliable messaging. </p>
 </section>
                                          
 <section class="code-snippet">
@@ -195,7 +196,7 @@ def on_message(client, userdata, msg):
         print(f"Error parsing message: {e}")
 </pre>
                                     <p class="snippet-explanation">
-When the MQTT message is received, this snippet decodes the JSON payload, extracts the sensor data, and sends it to the database. It highlights robust error handling to prevent data loss or crashes during parsing and insertion into InfluxDB.</p>
+When the MQTT message is received, this snippet decodes the JSON payload, extracts the sensor data, and sends it to the database. It shows error handling to prevent data loss or crashes during parsing and insertion into InfluxDB.</p>
 </section>
 
 <section class="code-snippet">
@@ -239,6 +240,11 @@ This API endpoint provides a way to retrieve the most recent sensor data receive
     <p><strong>-  </strong> Initial attempts to connect Grafana to InfluxDB failed due to mismatched naming conventions</p>
     <p><strong>+  </strong> With ChatGPT’s help and careful review of the Grafana documentation, I realized the issue was related to bucket IDs versus names and corrected the configuration</p>
   </div>
+    <b>4. Additional Sensor Node Integration:</b>
+  <div class="challenge-solution-item">
+    <p><strong>-  </strong> After adding the BME280 to the pipeline, data flow from both ESP32s become inconsistent</p>
+    <p><strong>+  </strong> Debugging led to setting up extra MQTT clients to handle additional nodes streaming data and success</p>
+  </div>
 </section>
 
                                     <hr class="major" />
@@ -246,11 +252,9 @@ This API endpoint provides a way to retrieve the most recent sensor data receive
 									<h2 id="results">Results</h2>
                                     <span class="image main"><img src="images/grafana.jpg" style="max-width: 90%; height: auto;" alt="" /></span>
                                     
-                                    <p><b>Real-Time Monitoring:</b> Sensor data from multiple ESP32 devices was transmitted via MQTT and visualized in real-time using Grafana, with a 10-second refresh rate.</p>
-                                    <p><b>Insightful Dashboards:</b> Grafana dashboards featured time-series graphs, gauge panels, and threshold markers, making trends like temperature fluctuations and light exposure easy to track at a glance.</p>
-                                    <p><b>System Efficiency:</b> Lightweight MQTT and asynchronous FastAPI processing ensured low latency and high responsiveness, even with multiple devices sending data.</p>
-                                    <p><b>Scalability:</b> The modular design allowed seamless addition of sensors and integration with external APIs, such as weather services for smarter irrigation decisions.</p>
-                                    <p><b>Data Reliability:</b> Centralized timestamping at the API ensured consistent and reliable data for historical analysis, eliminating ESP32 clock dependencies.</p>
+                                    <p><b>Live Monitoring Using Insightful Dashboards:</b> Sensor data from multiple ESP32 devices was transmitted via MQTT and visualized in real-time using Grafana, with a 10-second refresh rate. Grafana dashboards featured time-series graphs, gauge panels, and threshold markers, making trends like temperature fluctuations and light exposure easy to track at a glance.</p>
+                                    <p><b>System Efficiency & Scalability:</b> Lightweight MQTT and asynchronous FastAPI processing ensured low latency and high responsiveness, even with multiple devices sending data. The modular design allowed seamless addition of sensors and integration with external APIs, such as weather services for smarter irrigation decisions. Cloud services will enhance that scalability</p>
+                                    <p><b>Tons of Practice:</b> From tasks relevant to project planning, system design, data engineering, and data analysis, I had the pleasure to do it all at once and learn along the way. I feel so much more confident in setting up data pipelines, secure connections, and using unfumailiar technologies. I can't wait to expand on what I learned here.</p>
                                     
                                     <hr class="major" />
 
@@ -282,9 +286,10 @@ This API endpoint provides a way to retrieve the most recent sensor data receive
                                     <b>Libraries (C++)</b>
                                     <ul>
                                         <li><i>WiFi:</i> Simplifies ESP32’s connection to wireless networks</li>
-                                        <li><i>PubSubClient:</i> A compact library for MQTT communication</li>
-                                        <li><i>DHT_U:</i> Provides reliable sensor interfacing with the DHT11</li>
-                                        <li><i>ArduinoJson:</i> Facilitates lightweight JSON creation and parsing</li>
+                                        <li><i>PubSubClient (Nick O’Leary) :</i> A compact library for MQTT communication</li>
+                                        <li><i>Adafruit BME280 (Adafruit):</i> Provides reliable sensor interfacing with the DHT11</li>
+                                        <li><i>DHT Sensor Library (Adafruit):</i> Provides reliable sensor interfacing with the DHT11</li>
+                                        <li><i>ArduinoJson (Benoit Blanchon):</i> Facilitates lightweight JSON creation and parsing</li>
                                     </ul>
                                     
                                     <b>Libraries (Python)</b>
@@ -300,6 +305,7 @@ This API endpoint provides a way to retrieve the most recent sensor data receive
                                     <ul>
                                         <li><i>ESP32:</i> Selected for its built-in Wi-Fi and Bluetooth capabilities, making it ideal for IoT applications requiring real-time data transmission</li>
                                         <li><i>DHT11:</i> Chosen for its simplicity and affordability in measuring temperature and humidity in low-power projects</li>
+                                        <li><i>BME280:</i> Chosen for precision in low-power projects and as a complimentary sensor to DHT11</li>
                                     </ul>
                                     <b>Protocols</b>
                                     <ul>
