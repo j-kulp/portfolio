@@ -23,7 +23,7 @@
 
 							<!-- Header -->
 								<header id="header">
-									<a href="index.html" class="logo"><strong>End-to-End IoT Data Pipeline</strong> by Jared Kulp</a>
+									<a href="index.html" class="logo"><strong>IoT Data Analytics Pipeline</strong> by Jared Kulp</a>
 									<ul class="icons">
 										<li><a href="https://www.linkedin.com/in/jared-kulp-cfl/" target="_blank" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
 										<li><a href="https://www.youtube.com/@ThatAnalystJaredKulp" class="icon brands fa-youtube"><span class="label">YouTube</span></a></li>
@@ -34,21 +34,41 @@
 							<!-- Content -->
 								<section>
 									<header class="main">
-										<h1 id="top">End-to-End IoT Data Pipeline</h1>
+										<h1 id="top">IoT Data Analytics Pipeline</h1>
                                         <h3>From Sensors to Dashboards</h3>
 									</header>
+                                    
+                            <!--  Summary -->
+                                    <div class="portfolio-container">
+                                      <div class="section">
+                                        <h2>Goal</h2>
+                                        <p>It's clear that the number of smart devices is quickly multiplying, along with demands to analyze the data they produce.  This is why companies are heavily investing in the Internet of Things, and that's why this project aims to build a system to harness that data</p>
+                                      </div>
+                                      <div class="section">
+                                        <h2>Process</h2>
+                                        <p>A crucial feature of this project is adding more devices and their data flexibly. First, devices send information which is changed through middle-men, then stored and displayed live</p>
+                                      </div>
+                                      <div class="section">
+                                        <h2>Results</h2>
+                                          <p><b>1.</b>  Add new devices without updating schemas<br>
+                                        <b>2.</b>  Watch and analyze data in live dashboards<br>
+                                        <b>3.</b>  I can monitor my house for free</p>
+                                      </div>
+                                    </div>
+                                    <hr class="major" />
+<!-- END Summary -->
 
-									<span class="image main"><img src="images/engineer.jpg" style="max-width: 90%; height: auto;" alt="" /></span>
+									<span class="image main"><img src="images/grafana.png" style="max-width: 90%; height: auto;" alt="" /></span>
                                     <hr class="major" />
 									<h3>Project Overview:</h3>
-                                    <p>This project demonstrates a real-time Internet of Things(IoT) system designed for monitoring temperature and humidity. <br>It combines hardware, software, and visualization tools to capture, process, and analyze environmental data as efficiently and safely as possible by modular design.</p>
+                                    <p>This project shows a real-time Internet of Things(IoT) data pipeline, combining hardware, software, and visualization tools to capture, process, and analyze environmental data as efficiently and safely as possible by separating functions.</p>
                                     <h4>Why This Project?</h4>
-<p>This project helped me explore key tools and techniques in data engineering and embedded systems while also creating something modular and practical for monitoring conditions in small spaces. </p>
+<p>This project helped me explore key tools and techniques in data engineering and embedded systems while also creating something modular and practical to monitor my house's air conditioning. </p>
                                     <p>Skills learned in this project can be practically applied to monitor and maintain smart homes, gardens, and security applications</p>
-                                    <p>Broadly, these skills are applicable to embedded systems, data engineering, data analysis, and data science</p>
+                                    <p>More broadly, these skills are useful to embedded systems, data engineering, data analysis, and data science roles</p>
                                     
                                 <br>
-                                    <p><b>Key Features:</b></p>
+                                    <h4>Key Features:</h4>
                                         <li><b>ESP32 Microcontrollers</b>: Collect temperature and humidity data using DHT11 and BME280 sensors</li>
                                         <li><b>MQTT Protocol</b>: Ensures lightweight and efficient data exchange</li>
                                         <li><b>FastAPI Backend</b>: Processes and stores data in InfluxDB</li>
@@ -83,7 +103,7 @@
 									<h2 id="design">System Design</h2>
                                     
                                     <p>This system was built to be flexible, scalable, and secure. Each part of the setup has a clear job, working together to capture data, process it efficiently, and show it in a way that's easy to understand. The focus was on making something that works well in real-time and can grow when new sensors or features are added later.</p>
-                                    <p>One potential application of this skills from this project is in a smart gardening system. Sensors can monitor soil moisture and sunlight levels, while weather data is integrated to predict rainfall. Based on these inputs, the system can decide when to activate sprinklers or deploy a tarp to protect crops from harsh conditions</p>
+                                    <p>One potential application of this skills from this project is in a smart gardening system. Sensors can monitor soil moisture and sunlight levels, while weather data is integrated to predict rainfall. Based on these inputs, the system can decide when to activate sprinklers or deploy a tarp to protect crops from harsh conditions.</p>
 
 
                                     <hr class="major" />
@@ -107,8 +127,8 @@
 
 									<h3 id="hardware">Hardware</h3>
                                     
-                                    <span class="image main"><img src="images/dht11.jpg"  style="max-width: 70%; height: auto;"></span>
-                                    <span class="image main"><img src="images/bme280.jpg" style="max-width: 70%; height: auto;"></span>
+                                    <span class="image main"><img src="images/dht11.jpg"  style="width: auto; height: 700px;"></span>
+                                    <span class="image main"><img src="images/bme280.jpg" style="width: auto; height: 700px;"></span>
 
                                     <ul>
                                         <li><b>DHT11 Sensor</b>: Measures temperature and humidity. Chosen because it's familiar and cheap</li>
@@ -251,7 +271,7 @@ This API endpoint provides a way to retrieve the most recent sensor data receive
                                     <hr class="major" />
 
 									<h2 id="results">Results</h2>
-                                    <span class="image main"><img src="images/grafana.jpg" style="max-width: 90%; height: auto;" alt="" /></span>
+<!--                                     <span class="image main"><img src="images/grafana.jpg" style="max-width: 90%; height: auto;" alt="" /></span> -->
                                     
                                     <p><b>Live Monitoring Using Insightful Dashboards:</b> Sensor data from multiple ESP32 devices was transmitted via MQTT and visualized in real-time using Grafana, with a 10-second refresh rate. Grafana dashboards featured time-series graphs, gauge panels, and threshold markers, making trends like temperature fluctuations and light exposure easy to track at a glance.</p>
                                     <p><b>System Efficiency & Scalability:</b> Lightweight MQTT and asynchronous FastAPI processing ensured low latency and high responsiveness, even with multiple devices sending data. The modular design allowed seamless addition of sensors and integration with external APIs, such as weather services for smarter irrigation decisions. Cloud services can enhance that scalability</p>
@@ -321,6 +341,7 @@ This API endpoint provides a way to retrieve the most recent sensor data receive
 
 						</div>
 					</div>
+                      
 
 				<!-- Sidebar -->
 					<div id="sidebar">
